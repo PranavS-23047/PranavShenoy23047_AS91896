@@ -1,4 +1,4 @@
-# start by importing tkinter
+# the import statement
 import tkinter as tk
 root = tk.Tk()
 
