@@ -1,15 +1,19 @@
 import tkinter as tk
+from PIL import Image, ImageTk
+from tkinter import Frame, Label, BOTH
+
 root = tk.Tk()
-
-# setting the title of the program
-
 root.title('Guess The Number')
 
-root.geometry("1280x720")
-bg = tk.PhotoImage(file="images/mainbg.png")
+background_image = Image.open('images/mainbg.png')
+background_image = background_image.resize((1920, 1080), Image.LANCZOS)
+background_image_tk = ImageTk.PhotoImage(background_image)
 
-canvas1= tk.Canvas(root, width=1280, height=720)
-canvas1.pack(fill="both", expand=True)
-canvas1.create_image(0,0, image=bg, anchor="nw")
+hangman_frame = Frame(root)
+hangman_frame.pack(fill=BOTH, expand=True)
+
+image_label = Label(hangman_frame, image=background_image_tk)
+image_label.image = background_image_tk
+image_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 root.mainloop()
