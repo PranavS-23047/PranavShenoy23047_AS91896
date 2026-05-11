@@ -1,16 +1,33 @@
-import tkinter as tk
-from PIL import Image, ImageTk
+from tkinter import *
+from PIL import ImageTk, Image
 
-root = tk.Tk()
-root.title('Guess The Number')
-root.geometry("1915x1000")
+win = Tk()
+win.title("GUESS THE NUMBER")
 
-background_image = Image.open('images/mainbg.png')
-background_image = background_image.resize((1920, 1080), Image.Resampling.LANCZOS)
-background_image_tk = ImageTk.PhotoImage(background_image)
+win.geometry("1915x1000")
 
-gtn_frame = tk.Frame(root)
-gtn_frame.pack(fill=tk.BOTH, expand=True)
+original_image = Image.open("main_bg.png")
+
+canvas = Canvas(win)
+canvas.pack(fill=BOTH, expand=True)
+
+def resize_image(event):
+
+    new_width = event.width
+    new_height = event.height
+
+    resized_image = original_image.resize((new_width, new_height), Image.LANCZOS)
+
+    photo = ImageTk.PhotoImage(resized_image)
+
+    canvas.delete("all")
+    canvas.create_image(0, 0, image=photo, anchor='nw')
+
+    canvas.image = photo
+
+resize_image(type('obj', (object,), {'width': 700, 'height': 450}))
+
+canvas.bind("<Configure>", resize_image)
 
 image_label = tk.Label(gtn_frame, image=background_image_tk)
 image_label.image = background_image_tk
@@ -33,4 +50,4 @@ def on_leave(event):
 button1.bind("<Enter>", on_enter)
 button1.bind("<Leave>", on_leave)
 
-root.mainloop()
+win.mainloop()
