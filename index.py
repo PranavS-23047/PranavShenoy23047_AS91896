@@ -12,7 +12,7 @@ background_image = background_image.resize((1920, 1080), Image.Resampling.LANCZO
 background_image_tk = ImageTk.PhotoImage(background_image)
 
 gtn_frame: Frame = tk.Frame(root)
-gtn_frame.pack(fill=tk.Tk.BOTH, expand=True)
+gtn_frame.pack(fill=tk.BOTH, expand=True)
 
 image_label = tk.Label(gtn_frame, image=background_image_tk)
 image_label.image = background_image_tk
@@ -26,13 +26,5 @@ button_canvas.create_window(0, 0, anchor="nw", window=button1)
 button1.config(bg="#feefc8")
 button1.config(font=("Bobby Jones Soft", 26))
 
-def on_enter(event):
-    button1.config(bg="#008a48")
-
-def on_leave(event):
-    button1.config(bg="#00bf63")
-
-button1.bind("<Enter>", on_enter)
-button1.bind("<Leave>", on_leave)
 
 root.mainloop()
