@@ -1,16 +1,18 @@
 import tkinter as tk
+from tkinter import Frame
+
 from PIL import Image, ImageTk
 
 root = tk.Tk()
 root.title('Guess The Number')
 root.geometry("1915x1000")
 
-background_image = Image.open('images/mainbg.png')
+background_image = Image.open('main_bg.png')
 background_image = background_image.resize((1920, 1080), Image.Resampling.LANCZOS)
 background_image_tk = ImageTk.PhotoImage(background_image)
 
-gtn_frame = tk.Frame(root)
-gtn_frame.pack(fill=tk.BOTH, expand=True)
+gtn_frame: Frame = tk.Frame(root)
+gtn_frame.pack(fill=tk.Tk.BOTH, expand=True)
 
 image_label = tk.Label(gtn_frame, image=background_image_tk)
 image_label.image = background_image_tk
