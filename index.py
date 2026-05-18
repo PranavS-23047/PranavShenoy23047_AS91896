@@ -1,30 +1,63 @@
-import tkinter as tk
-from tkinter import Frame
-
-from PIL import Image, ImageTk
-
-root = tk.Tk()
-root.title('Guess The Number')
-root.geometry("1915x1000")
-
-background_image = Image.open('main_bg.png')
-background_image = background_image.resize((1920, 1080), Image.Resampling.LANCZOS)
-background_image_tk = ImageTk.PhotoImage(background_image)
-
-gtn_frame: Frame = tk.Frame(root)
-gtn_frame.pack(fill=tk.BOTH, expand=True)
-
-image_label = tk.Label(gtn_frame, image=background_image_tk)
-image_label.image = background_image_tk
-image_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-button_canvas = tk.Canvas(gtn_frame, width=400, height=60)
-button_canvas.place(x=753, y=107)
-
-button1 = tk.Button(button_canvas, text="CLICK HERE TO BEGIN", borderwidth=0, highlightthickness=0)
-button_canvas.create_window(0, 0, anchor="nw", window=button1)
-button1.config(bg="#feefc8")
-button1.config(font=("Bobby Jones Soft", 26))
+from tkinter import Tk, Canvas, Button
+from PIL import ImageTk, Image
 
 
-root.mainloop()
+win = Tk()
+win.title("Guess the Number")
+win.geometry("1915x1000")
+
+
+original_image = Image.open("main_bg.png")
+
+
+canvas = Canvas(win, highlightthickness=0)
+canvas.pack(fill="both", expand=True)
+
+
+btn = Button(
+    win,
+    text="CLICK HERE TO BEGIN",
+    font=("Bobby Jones Soft", 20),
+    bg="#feefc8",
+)
+
+btn.place(x=400, y=60)
+
+def resize_image(event):
+    global bg_photo
+
+
+    new_width = event.width
+    new_height = event.height
+
+
+    resized_image = original_image.resize(
+        (new_width, new_height),
+        Image.LANCZOS
+    )
+
+
+    bg_photo = ImageTk.PhotoImage(resized_image)
+
+
+    canvas.delete("all")
+
+
+    canvas.create_image(
+        0,
+        0,
+        image=bg_photo,
+        anchor="nw"
+    )
+
+    canvas.create_window(
+        new_width // 2,
+        new_height // 2,
+        window=btn,
+        width=new_width // 6,
+        height=new_height // 12
+    )
+
+canvas.bind("<Configure>", resize_image)
+
+win.mainloop()
