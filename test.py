@@ -1,5 +1,8 @@
 from tkinter import Tk, Canvas, Button, Frame
 from PIL import ImageTk, Image
+from PIL._tkinter_finder import tk
+
+from index import root
 
 win = Tk()
 win.title("Guess the Number")
@@ -28,11 +31,10 @@ resize_image(type('obj', (object,), {'width': 700, 'height': 450}))
 gtn_frame = Frame(win)
 gtn_frame.pack()
 
-button_canvas = Canvas(gtn_frame, width=400, height=60)
-button_canvas.pack()
+root.geometry("400x60")
 
-button1 = Button(button_canvas, text="CLICK HERE TO BEGIN", borderwidth=0, highlightthickness=0,
-                  bg="#feefc8", font=("Bobby Jones Soft", 26))
-button_canvas.create_window(0, 0, anchor="nw", window=button1)
+# The button will now grow/shrink as you resize the window
+btn = tk.Button(root, text="I Resize!")
+btn.pack(fill=tk.BOTH, expand=True)
 
 win.mainloop()
