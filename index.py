@@ -61,3 +61,7 @@ def resize_image(event):
 canvas.bind("<Configure>", resize_image)
 
 win.mainloop()
+
+
+def root():
+    return None
