@@ -34,7 +34,7 @@ gtn_frame.pack()
 root.geometry("400x60")
 
 # The button will now grow/shrink as you resize the window
-btn = tk.Button(root, text="I Resize!")
+btn = tk.Button(root, text="CLICK HERE TO BEGIN")
 btn.pack(fill=tk.BOTH, expand=True)
 
 win.mainloop()
