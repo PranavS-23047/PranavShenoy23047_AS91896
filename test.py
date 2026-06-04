@@ -1,4 +1,4 @@
-from tkinter import Tk, Canvas, Button, Frame
+from tkinter import (Tk, Canvas, Button, Frame)
 from PIL import ImageTk, Image
 from PIL._tkinter_finder import tk
 
