@@ -4,13 +4,13 @@ from PIL._tkinter_finder import tk
 
 from index import root
 
-win = Tk()
-win.title("Guess the Number")
-win.geometry("1915x1000")
+root = tk.Tk()
+root.title("Guess the Number")
+root.geometry("1915x1000")
 
 original_image = Image.open("main_bg.png")
 
-canvas = Canvas(win)
+canvas = Canvas(root)
 canvas.pack(fill="both", expand=True)
 
 def resize_image(event):
@@ -28,13 +28,14 @@ def resize_image(event):
 canvas.bind("<Configure>", resize_image)
 resize_image(type('obj', (object,), {'width': 700, 'height': 450}))
 
-gtn_frame = Frame(win)
+gtn_frame = Frame(root)
 gtn_frame.pack()
 
 root.geometry("400x60")
 
 # The button will now grow/shrink as you resize the window
-btn = tk.Button(root, text="CLICK HERE TO BEGIN")
-btn.pack(fill=tk.BOTH, expand=True)
+button1 = tk.Button(root, text="CLICK HERE TO BEGIN")
+button1.pack(fill=tk.BOTH, expand=True)
+button1.place(x=50, y=90)
 
-win.mainloop()
+root.mainloop()
