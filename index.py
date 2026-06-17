@@ -2,6 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from tkinter import font
 
+
 root = tk.Tk()
 root.title("Guess the Number")
 root.geometry("1915x1000")
@@ -33,18 +34,15 @@ button1_font = font.Font(family="Bobby Jones Soft")
 button1 = tk.Button(
     root,
     text="CLICK HERE TO BEGIN",
-    font=(button1_font, 14),
-    padx=0,
-    pady=0,
+    font=(button1_font, 25),
     bd=0,
     bg="#feefc8",
     anchor='center',
     activebackground="#c7b897",
-    height=5,
-    width=15,
+    height=1,
+    width=20,
     )
 button1.pack(fill=tk.BOTH, expand=True)
-button1.place(x=810, y=106.5)
-button1.config(height=5, width=25)
+button1.place(x=775, y=106)
 
 root.mainloop()
