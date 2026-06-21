@@ -6,7 +6,7 @@ from tkinter import font
 
 
 root = tk.Tk()
-root.title("Guess the Number")
+root.title(self, "Guess the Number")
 root.geometry("1915x1000")
 
 bg_image = Image.open("main_bg.png")
