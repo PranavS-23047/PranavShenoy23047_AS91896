@@ -30,7 +30,7 @@ gtn_frame = tk.Frame(root)
 gtn_frame.pack()
 
 # button design and setup
-button1_font = font.Font(family="Bobby Jones Soft", size=25)
+button1_font = font.Font(family="Times New Roman", size=26)
 button1 = tk.Button(
     root,
     text="CLICK HERE TO BEGIN",
@@ -44,6 +44,7 @@ button1 = tk.Button(
     )
 button1.place(x=762, y=135)
 
+#effects for buttons - aesthetic purposes
 def on_enter(event):
     button1.config(bg="#c7b897", fg="black")
 def on_leave(event):
@@ -52,4 +53,5 @@ def on_leave(event):
 button1.bind("<Enter>", on_enter)
 button1.bind("<Leave>", on_leave)
 
+#starts event loop and keeps window responsive until window is closed by user
 root.mainloop()
