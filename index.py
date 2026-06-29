@@ -9,13 +9,11 @@ root = tk.Tk()
 root.title("Guess the Number")
 root.geometry("1915x1000")
 
-
 #Background#
 bg_image = Image.open("main_bg.png")
 
 canvas = tk.Canvas(root)
 canvas.pack(fill="both", expand=True)
-
 
 def resize_image(event):
     new_width = event.width
@@ -28,11 +26,9 @@ def resize_image(event):
     canvas.create_image(0, 0, image=photo, anchor="nw")
     canvas.image = photo
 
-
 canvas.bind("<Configure>", resize_image)
 
 resize_image(type("obj", (object,), {"width": 1915, "height": 1000}))
-
 
 #Button#
 button_font = font.Font(family="Times New Roman", size=26)
@@ -46,7 +42,6 @@ def open_instructions():
     instructions = GameInstructions(root)
     instructions.pack(fill="both", expand=True)
 
-
 button1 = tk.Button(
     root,
     text="CLICK HERE TO BEGIN",
@@ -58,9 +53,7 @@ button1 = tk.Button(
     width=20,
     command=open_instructions
 )
-
 button1.place(x=762, y=135)
-
 
 #Hover Effects#
 def on_enter(event):
@@ -68,11 +61,8 @@ def on_enter(event):
 def on_leave(event):
     button1.config(bg="#feefc8")
 
-
 button1.bind("<Enter>", on_enter)
 button1.bind("<Leave>", on_leave)
 
-
 #Run Program#
 root.mainloop()
-
