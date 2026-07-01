@@ -12,3 +12,4 @@ class GameInstructions(tk.Frame):
             bg="#feefc8"
         )
         title.pack(pady=30)
+
