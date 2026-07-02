@@ -4,12 +4,12 @@ from tkinter import font
 from PIL import Image, ImageTk
 from game_instructions import GameInstructions
 
-#Window Setup#
+#Window Setup
 root = tk.Tk()
 root.title("Guess the Number")
 root.geometry("1915x1000")
 
-#Background#
+#Background
 bg_image = Image.open("main_bg.png")
 
 canvas = tk.Canvas(root)
@@ -30,7 +30,7 @@ canvas.bind("<Configure>", resize_image)
 
 resize_image(type("obj", (object,), {"width": 1915, "height": 1000}))
 
-#Button#
+#Button
 button_font = font.Font(family="Times New Roman", size=26)
 
 def open_instructions():
@@ -55,7 +55,7 @@ button1 = tk.Button(
 )
 button1.place(x=762, y=135)
 
-#Hover Effects#
+#Hover Effects
 def on_enter(event):
     button1.config(bg="#c7b897")
 def on_leave(event):
@@ -64,5 +64,5 @@ def on_leave(event):
 button1.bind("<Enter>", on_enter)
 button1.bind("<Leave>", on_leave)
 
-#Run Program#
+#Run Program
 root.mainloop()
