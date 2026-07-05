@@ -6,7 +6,7 @@ from game_instructions import GameInstructions
 
 #Window Setup
 root = tk.Tk()
-root.title("Guess the Number")
+root.title("Guess the Number!")
 root.geometry("1915x1000")
 
 #Background
@@ -31,7 +31,7 @@ canvas.bind("<Configure>", resize_image)
 resize_image(type("obj", (object,), {"width": 1915, "height": 1000}))
 
 #Button
-button_font = font.Font(family="Times New Roman", size=26)
+button1_font = font.Font(family="Times New Roman", size=26)
 
 def open_instructions():
     # Remove title screen
@@ -45,7 +45,7 @@ def open_instructions():
 button1 = tk.Button(
     root,
     text="CLICK HERE TO BEGIN",
-    font=button_font,
+    font=button1_font,
     bd=0,
     bg="#feefc8",
     activebackground="#c7b897",
