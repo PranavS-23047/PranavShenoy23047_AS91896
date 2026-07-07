@@ -1,70 +1,75 @@
+# Import the modules needed for this screen.
 import tkinter as tk
-from PIL import Image, ImageTk
 from tkinter import font
+from PIL import Image, ImageTk
+from game import Game
 
-from index import canvas
 
-root=tk.Tk()
-root.title("Instructions")
-
+# Create the instructions screen as a Frame.
 class GameInstructions(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
-        # Load the background image
+        # Load the instructions background image.
         self.bg_image = Image.open("gi_bg.png")
 
-        # Create a label to hold the background
+        # Create a label to display the image.
         self.bg_label = tk.Label(self)
         self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        # Resize the image whenever the frame changes size
+        # Resize the image if the window size changes.
         self.bind("<Configure>", self.resize_background)
 
-    def resize_background(self, event):
-        # Only resize if the Frame itself is resizing, not its child widgets
-        if event.widget == self:
-            # Resize image to fit the window
-            resized_image = self.bg_image.resize((event.width, event.height), Image.Resampling.LANCZOS)
+        # Create the button font.
+        button2_font = font.Font(family="Times New Roman", size=26)
 
-            # Convert to a Tkinter image
+        # Create the button that starts the game.
+        self.button = tk.Button(
+            self,
+            text="→NEXT",
+            font=button2_font,
+            fg="white",
+            bd=0,
+            bg="#c4966b",
+            activebackground="#b15505",
+            height=1,
+            width=8,
+            command=self.open_game
+        )
+
+        # Position the button.
+        self.button.place(x=882, y=867)
+
+        # Add hover effects to the button.
+        self.button.bind("<Enter>", self.on_enter)
+        self.button.bind("<Leave>", self.on_leave)
+
+    # Resize the background image to fit the window.
+    def resize_background(self, event):
+        if event.widget == self:
+            resized_image = self.bg_image.resize(
+                (event.width, event.height),
+                Image.Resampling.LANCZOS
+            )
+
             self.bg_photo = ImageTk.PhotoImage(resized_image)
 
-            # Display the image
             self.bg_label.config(image=self.bg_photo)
-            # Keep a reference to prevent garbage collection
             self.bg_label.image = self.bg_photo
 
-#Button
-button2_font = font.Font(family="Times New Roman", size=26)
+    # Open the game screen.
+    def open_game(self):
+        # Remove the instructions page.
+        self.destroy()
 
-def open_instructions():
-    # Remove title screen
-    canvas.pack_forget()
-    button2.destroy()
+        # Display the game page.
+        game = Game(self.master)
+        game.pack(fill="both", expand=True)
 
-    # Show instructions screen
-    instructions = GameInstructions(root)
-    instructions.pack(fill="both", expand=True)
+    # Change button colour when the mouse enters.
+    def on_enter(self, event):
+        self.button.config(bg="#b15505")
 
-button2 = tk.Button(
-    root,
-    text="CLICK HERE TO BEGIN",
-    font=button2_font,
-    bd=0,
-    bg="#feefc8",
-    activebackground="#c7b897",
-    height=1,
-    width=20,
-    command=open_instructions
-)
-button2.place(x=762, y=135)
-
-#Hover Effects
-def on_enter(event):
-    button2.config(bg="#c7b897")
-def on_leave(event):
-    button2.config(bg="#feefc8")
-
-button2.bind("<Enter>", on_enter)
-button2.bind("<Leave>", on_leave)
+    # Change button colour back when the mouse leaves.
+    def on_leave(self, event):
+        self.button.config(bg="#c4966b")
