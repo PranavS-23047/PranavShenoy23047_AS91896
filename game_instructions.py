@@ -73,3 +73,4 @@ class GameInstructions(tk.Frame):
     # Change button colour back when the mouse leaves.
     def on_leave(self, event):
         self.button.config(bg="#c4966b")
+
